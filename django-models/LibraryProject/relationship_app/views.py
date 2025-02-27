@@ -134,3 +134,21 @@ def edit_book(request):
 @permission_required('relationship_app.can_delete_book', raise_exception=True)
 def delete_book(request):
     return HttpResponse("You have permission to delete a book.")
+
+
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+
+# User Registration View
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Log the user in after registration
+            return redirect('list_books')  # Redirect after successful registration
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form': form})
