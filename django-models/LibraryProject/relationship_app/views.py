@@ -57,7 +57,7 @@ def register(request):
             return redirect('login')
     else:
         form = UserCreationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'relationship_app/register.html', {'form': form})
 
 def user_login(request):
     if request.method == 'POST':
@@ -68,11 +68,11 @@ def user_login(request):
             return redirect('list_books')
     else:
         form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'relationship_app/login.html', {'form': form})
 
 def user_logout(request):
     logout(request)
-    return render(request, 'logout.html')
+    return render(request, 'relationship_app/logout.html')
 
 
 # 
@@ -95,11 +95,11 @@ def admin_view(request):
 
 @user_passes_test(user_is_librarian)
 def librarian_view(request):
-    return render(request, 'librarian_page.html')
+    return render(request, 'relationship_app/librarian_page.html')
 
 @user_passes_test(user_is_member)
 def member_view(request):
-    return render(request, 'member_page.html')
+    return render(request, 'relationship_app/member_page.html')
 
 
 from django.contrib.auth.decorators import permission_required
@@ -151,4 +151,4 @@ def register(request):
             return redirect('list_books')  # Redirect after successful registration
     else:
         form = UserCreationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'relationship_app/register.html', {'form': form})
