@@ -81,8 +81,13 @@ def user_logout(request):
 from django.contrib.auth.decorators import user_passes_test
 from .models import UserProfile
 
+# def user_is_admin(user):
+#     return user.userprofile.role == 'Admin'
 def user_is_admin(user):
-    return user.userprofile.role == 'Admin'
+    try:
+        return user.userprofile.role == 'Admin'
+    except UserProfile.DoesNotExist:
+        return False
 
 def user_is_librarian(user):
     return user.userprofile.role == 'Librarian'
@@ -176,11 +181,3 @@ def admin_view(request):
     # Your admin-specific logic here
     return HttpResponse("Welcome, Admin! This is the admin view.")
 
-# your_app/urls.py
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('admin/', views.admin_view, name='admin_view'),
-    # ... other URLs
-]
