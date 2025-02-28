@@ -16,9 +16,10 @@
 
 from django.urls import path
 from .views import register, user_login, user_logout, admin_view, librarian_view , member_view ,  add_book, edit_book, delete_book, LoginView, LogoutView
+from . import views
 
 urlpatterns = [
-    path('register/', register, name='register'),
+    path('register/', views.register, name='register'),
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('admin/', admin_view, name='admin_view'),
