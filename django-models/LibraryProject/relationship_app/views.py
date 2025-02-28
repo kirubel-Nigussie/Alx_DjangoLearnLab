@@ -83,7 +83,7 @@ from .models import UserProfile
 
 # def user_is_admin(user):
 #     return user.userprofile.role == 'Admin'
-def user_is_admin(user):
+def Admin(user):
     try:
         return user.userprofile.role == 'Admin'
     except UserProfile.DoesNotExist:
@@ -95,7 +95,7 @@ def user_is_librarian(user):
 def user_is_member(user):
     return user.userprofile.role == 'Member'
 
-@user_passes_test(user_is_admin)
+@user_passes_test(Admin)
 def admin_view(request):
     return render(request, 'admin_page.html')
 
