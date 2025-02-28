@@ -164,20 +164,20 @@ def register(request):
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-# your_app/views.py
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.contrib.auth.decorators import user_passes_test
-from .models import UserProfile
+# # your_app/views.py
+# from django.shortcuts import render
+# from django.http import HttpResponse
+# from django.contrib.auth.decorators import user_passes_test
+# from .models import UserProfile
 
-def is_admin(user):
-    try:
-        return user.userprofile.role == 'Admin'
-    except UserProfile.DoesNotExist:
-        return False
+# def is_admin(user):
+#     try:
+#         return user.userprofile.role == 'Admin'
+#     except UserProfile.DoesNotExist:
+#         return False
 
-@user_passes_test(is_admin)
-def admin_view(request):
-    # Your admin-specific logic here
-    return HttpResponse("Welcome, Admin! This is the admin view.")
+# @user_passes_test(is_admin)
+# def admin_view(request):
+#     # Your admin-specific logic here
+#     return HttpResponse("Welcome, Admin! This is the admin view.")
 
