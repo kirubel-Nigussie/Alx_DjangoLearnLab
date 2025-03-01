@@ -2,10 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser, BaseUserManager
 
-# class Book(models.Model):
-#     title = models.CharField(max_length=200, null=False)
-#     author =models.CharField(max_length=100 ,null=False)
-#     publication_year = models.IntegerField(null=False)
+class Book(models.Model):
+    title = models.CharField(max_length=200, null=False)
+    author =models.CharField(max_length=100 ,null=False)
+    publication_year = models.IntegerField(null=False)
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None):
         if not email:
