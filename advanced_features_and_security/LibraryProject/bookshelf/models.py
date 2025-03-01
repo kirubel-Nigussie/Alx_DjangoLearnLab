@@ -6,7 +6,24 @@ from django.contrib.auth.models import AbstractUser, AbstractBaseUser, BaseUserM
 #     title = models.CharField(max_length=200, null=False)
 #     author =models.CharField(max_length=100 ,null=False)
 #     publication_year = models.IntegerField(null=False)
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password=None):
+        if not email:
+            raise ValueError('Email required')
+        User =  self.model(email = self.normalize_email(email))
+        User.set_password(password)
+        User.save(using = self._db)
+        return User
+    
+    def create_superuser(self, email, password=None):
+        User = self.create_user(email, password)
 
+        User.is_staff = True
+        User.is_superuser = True
+        User.save(using = self._db)
+
+        return User
+    
 class CustomUser(AbstractUser):
 
   email = models.EmailField(unique=True, max_length=256)
