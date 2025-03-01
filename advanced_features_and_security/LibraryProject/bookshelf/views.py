@@ -11,4 +11,4 @@ def book_list(request):
   if  request.user.has_perm('bookshelf.can_create'):
      return render(request, "index,html", context)  
   else:
-    raiseExceptions("invalid book ")
+    raiseExceptions("raise_exception")
