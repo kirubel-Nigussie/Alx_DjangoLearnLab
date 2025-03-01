@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-($k2nih6^9z$nzoh@p+&d6@a&7wk6s)%1qeokmli%p)11m+(b%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -129,3 +129,10 @@ LOGIN_REDIRECT_URL = 'login'  # Redirects to login page after successful login
 LOGOUT_REDIRECT_URL = 'login'  # Redirects to login page after logout
 
 AUTH_USER_MODEL = "bookshelf.CustomUser"
+
+SECURE_BROWSER_XSS_FILTER = ""
+X_FRAME_OPTIONS = ""
+SECURE_CONTENT_TYPE_NOSNIFF = ""
+CSRF_COOKIE_SECURE =True
+SESSION_COOKIE_SECURE = True
+
