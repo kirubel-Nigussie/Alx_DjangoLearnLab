@@ -38,3 +38,11 @@ class CustomUser(AbstractUser):
 
   objects = CustomUserManager()
 
+
+  class Meta:
+      permissions = [
+          ("can_create","can create a bookshelf "),
+          ("can_delete", "can delete a bookshelf"),
+      ]
+      
+
