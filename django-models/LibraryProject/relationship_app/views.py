@@ -81,13 +81,8 @@ def user_logout(request):
 from django.contrib.auth.decorators import user_passes_test
 from .models import UserProfile
 
-# def user_is_admin(user):
-#     return user.userprofile.role == 'Admin'
-def Admin(user):
-    try:
-        return user.userprofile.role == 'Admin'
-    except UserProfile.DoesNotExist:
-        return False
+def user_is_admin(user):
+    return user.userprofile.role == 'Admin'
 
 def user_is_librarian(user):
     return user.userprofile.role == 'Librarian'
@@ -95,7 +90,7 @@ def user_is_librarian(user):
 def user_is_member(user):
     return user.userprofile.role == 'Member'
 
-@user_passes_test(Admin)
+@user_passes_test(user_is_admin)
 def admin_view(request):
     return render(request, 'admin_page.html')
 
@@ -161,23 +156,21 @@ def register(request):
 
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-# # your_app/views.py
-# from django.shortcuts import render
-# from django.http import HttpResponse
-# from django.contrib.auth.decorators import user_passes_test
-# from .models import UserProfile
 
-# def is_admin(user):
-#     try:
-#         return user.userprofile.role == 'Admin'
-#     except UserProfile.DoesNotExist:
-#         return False
 
-# @user_passes_test(is_admin)
-# def admin_view(request):
-#     # Your admin-specific logic here
-#     return HttpResponse("Welcome, Admin! This is the admin view.")
+
+''''''''''''''''''''''''''''''''''''''''''''''''
+''''''
+
+from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render
+
+
+def is_admin(user):
+    return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
+
+@user_passes_test(is_admin)
+def admin_view(request):
+    return render(request, 'admin_view.html')
 
