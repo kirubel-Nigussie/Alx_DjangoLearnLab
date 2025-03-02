@@ -15,8 +15,9 @@
 # ] 
 
 from django.urls import path
-from .views import register, user_login, user_logout, admin_view, librarian_view , member_view ,  add_book, edit_book, delete_book, LoginView, LogoutView
+from .views import register, user_login, user_logout, admin_view, librarian_view , member_view ,  add_book, edit_book, delete_book, LoginView, LogoutView, is_admin, is_librarian, is_member
 from . import views
+
 
 urlpatterns = [
     path('register/', views.register, name='register'),
@@ -25,9 +26,12 @@ urlpatterns = [
     path('admin/', admin_view, name='admin_view'),
     path('librarian/', librarian_view, name='librarian_view'),
     path('member/', member_view, name='member_view'),
-     path('add_book/', add_book, name='add_book'),
+    path('add_book/', add_book, name='add_book'),
     path('edit_book/', edit_book, name='edit_book'),
     path('delete-book/', delete_book, name='delete_book'),
+    path('admin-view/', admin_view, name='admin_view'),
+    path('librarian-view/', librarian_view, name='librarian_view'),
+    path('member-view/', member_view, name='member_view'),
 
 ]
 
