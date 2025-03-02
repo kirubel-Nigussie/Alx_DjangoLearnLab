@@ -166,9 +166,14 @@ def register(request):
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
 
-
 def is_admin(user):
+    print(f"User: {user.username}, Authenticated: {user.is_authenticated}")
+    if hasattr(user, 'userprofile'):
+        print(f"Role: {user.userprofile.role}")
+    else:
+        print("UserProfile does not exist!")
     return user.is_authenticated and hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
+
 
 @user_passes_test(is_admin)
 def admin_view(request):
