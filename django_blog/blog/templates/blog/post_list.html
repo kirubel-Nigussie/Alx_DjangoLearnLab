@@ -9,3 +9,8 @@
 {% endfor %}
 <a href="{% url 'post-create' %}">Create New Post</a>
 {% endblock %}
+
+<form method="get" action="{% url 'search-posts' %}">
+  <input type="text" name="q" placeholder="Search posts..." required />
+  <button type="submit">Search</button>
+</form>
